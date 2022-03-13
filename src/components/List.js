@@ -5,9 +5,18 @@ import "bootstrap/dist/css/bootstrap.min.css";
 function List() {
     const cars = ["benz", "prado", "mazda", "subaru"];
     const [show, setShow] = useState(false);
+    const [del, setDel] = useState(false);
+    const [pub, setPub] = useState(false);
+    const [edit, setEdit] = useState(false);
 
-    const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    const handleClose = () => setShow(false);
+    const handleDel = () => setDel(true);
+    const handleDelClose = () => setDel(false);
+    const handlePub = () => setPub(true);
+    const handlePubClose = () => setPub(false);
+    const handleEdit = () => setEdit(true);
+    const handleEditClose = () => setEdit(false);
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -36,10 +45,67 @@ function List() {
                     </Modal.Header>
                     <Modal.Body>Do you wish to add another car!</Modal.Body>
                     <Modal.Footer>
-                        <Button variant="secondary" onClick={handleClose}>
+                        <Button variant="danger" onClick={handleClose}>
                             Close
                         </Button>
-                        <Button variant="primary" onClick={handleClose}>
+                        <Button variant="warning" onClick={handleClose}>
+                            Save Changes
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
+                <Modal
+                    show={del}
+                    onHide={handleDelClose}
+                    backdrop="static"
+                    keyboard={false}
+                >
+                    <Modal.Header closeButton>
+                        <Modal.Title>Delete Cars</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>Do you wish to delete a car!</Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="danger" onClick={handleDelClose}>
+                            Close
+                        </Button>
+                        <Button variant="warning" onClick={handleDelClose}>
+                            Save Changes
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
+                <Modal
+                    show={pub}
+                    onHide={handlePubClose}
+                    backdrop="static"
+                    keyboard={false}
+                >
+                    <Modal.Header closeButton>
+                        <Modal.Title>Publish Cars</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>Do you wish to publish!</Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="danger" onClick={handlePubClose}>
+                            Close
+                        </Button>
+                        <Button variant="warning" onClick={handlePubClose}>
+                            Save Changes
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
+                <Modal
+                    show={edit}
+                    onHide={handleEditClose}
+                    backdrop="static"
+                    keyboard={false}
+                >
+                    <Modal.Header closeButton>
+                        <Modal.Title>Edit Cars</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>Do you wish to edit a car!</Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="danger" onClick={handleEditClose}>
+                            Close
+                        </Button>
+                        <Button variant="warning" onClick={handleEditClose}>
                             Save Changes
                         </Button>
                     </Modal.Footer>
@@ -62,19 +128,37 @@ function List() {
                                 <tr key={i}>
                                     <td>{car}</td>
                                     <td>
-                                        <button onClick={handleShow}>
+                                        <Button
+                                            variant="success"
+                                            onClick={handleShow}
+                                        >
                                             add
-                                        </button>
+                                        </Button>
                                     </td>
                                     <td>
                                         {" "}
-                                        <button>remove</button>
+                                        <Button
+                                            variant="danger"
+                                            onClick={handleDel}
+                                        >
+                                            remove
+                                        </Button>
                                     </td>
                                     <td>
-                                        <button>publish</button>
+                                        <Button
+                                            variant="primary"
+                                            onClick={handlePub}
+                                        >
+                                            publish
+                                        </Button>
                                     </td>
                                     <td>
-                                        <button>edit</button>
+                                        <Button
+                                            variant="info"
+                                            onClick={handleEdit}
+                                        >
+                                            edit
+                                        </Button>
                                     </td>
                                 </tr>
                             );
